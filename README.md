@@ -10,5 +10,5 @@ Found a bug?
 Feel free to open an issue here -: https://github.com/Sunehildeep/EventSystem/issues
 
 Commands :-
-  • /event - To bring up the event textdraw menu.
-  • /joinevent - To join an exisitng open event.
+1) /joinevent - To join an exisitng open event.
+2) /event - To bring up the event textdraw menu.
