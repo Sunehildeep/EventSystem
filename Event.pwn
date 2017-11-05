@@ -1,4 +1,4 @@
-/*Event system by Sunehildeep V2.1
+/*Event system by Sunehildeep
 
 Credits - Sunehildeep*/
 
@@ -111,31 +111,38 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
     if(clickedid == eInfo[textdraw_13])
     {
         ShowPlayerDialog(playerid,DIALOG_WEAP,DIALOG_STYLE_INPUT,"Event Weapon 1","Enter the Weapon ID for the 1st weapon","Okay","Back");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_16])
     {
         ShowPlayerDialog(playerid,DIALOG_HEALTH,DIALOG_STYLE_INPUT,"Event Health","Enter the player's health for the event","Okay","Back");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_17])
     {
         ShowPlayerDialog(playerid,DIALOG_ARMOUR,DIALOG_STYLE_INPUT,"Event Health","Enter the player's armour for the event","Okay","Back");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_14])
     {
         ShowPlayerDialog(playerid,DIALOG_WEAP1,DIALOG_STYLE_INPUT,"Event Weapon 2","Enter the Weapon ID for the 2nd weapon","Okay","Back");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_15])
     {
         ShowPlayerDialog(playerid,DIALOG_WEAP2,DIALOG_STYLE_INPUT,"Event Weapon 3","Enter the Weapon ID for the 3rd weapon","Okay","Back");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_18])
     {
         ShowPlayerDialog(playerid,DIALOG_VEHICLE,DIALOG_STYLE_INPUT,"Event Vehicle","Enter the vehicle id for the event","Okay","Back");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_19])
     {
         GetPlayerPos(playerid, eInfo[eX], eInfo[eY], eInfo[eZ]);
-        TextDrawSetString(eInfo[textdraw_19],"Set");
+        TextDrawSetString(eInfo[textdraw_19],"Position is set");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_20])
     {
@@ -162,6 +169,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
             SendClientMessage(playerid,COLOR_YELLOW,"Event should be started first.");
             eInfo[eLock] = 0;
         }
+        return 1;
     }
     if(clickedid == eInfo[textdraw_11])
     {
@@ -196,7 +204,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
 			        eInfo[eAnnounce] = 0;
 			        eInfo[eFreeze] = 0;
 			        eInfo[PlayersTPED] = false;
-			        
+
 			        TextDrawSetString(eInfo[textdraw_21], "No");
                 }
             }
@@ -205,6 +213,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         {
             SendClientMessage(playerid,COLOR_YELLOW,"Event should be announced/unlocked first.");
         }
+        return 1;
     }
     if(clickedid == eInfo[textdraw_21])
     {
@@ -219,6 +228,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
                 TextDrawSetString(eInfo[textdraw_21], "No");
             }
         }
+        return 1;
     }
     if(clickedid == eInfo[textdraw_24])
     {
@@ -256,6 +266,7 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         {
             SendClientMessage(playerid,COLOR_YELLOW,"The player's are already teleported!");
         }
+        return 1;
     }
     if(clickedid == eInfo[textdraw_12])
     {
@@ -281,8 +292,9 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
         eInfo[eAnnounce] = 0;
         eInfo[eFreeze] = 0;
         eInfo[PlayersTPED] = false;
-        
+
         TextDrawSetString(eInfo[textdraw_21], "No");
+        return 1;
     }
     if(clickedid == eInfo[textdraw_23])
     {
@@ -299,11 +311,9 @@ public OnPlayerClickTextDraw(playerid, Text:clickedid)
                 TextDrawSetString(eInfo[textdraw_23], "No");
             }
         }
+        return 1;
     }
-
-
-
-    return 1;
+    return 0;
 }
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
@@ -317,6 +327,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 eInfo[eHealth] = floatstr(inputtext);
                 TextDrawSetString(eInfo[textdraw_16],inputtext);
             }
+            return 1;
         }
         case DIALOG_ARMOUR:
         {
@@ -325,6 +336,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 eInfo[eArmour] = floatstr(inputtext);
                 TextDrawSetString(eInfo[textdraw_17],inputtext);
             }
+            return 1;
         }
         case DIALOG_VEHICLE:
         {
@@ -333,6 +345,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 eInfo[eVeh] = strval(inputtext);
                 TextDrawSetString(eInfo[textdraw_18],inputtext);
             }
+            return 1;
         }
         case DIALOG_WEAP:
         {
@@ -341,6 +354,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 eInfo[eWeaps][0] = strval(inputtext);
                 TextDrawSetString(eInfo[textdraw_13],inputtext);
             }
+            return 1;
         }
         case DIALOG_WEAP1:
         {
@@ -349,6 +363,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 eInfo[eWeaps][1] = strval(inputtext);
                 TextDrawSetString(eInfo[textdraw_14],inputtext);
             }
+            return 1;
         }
         case DIALOG_WEAP2:
         {
@@ -357,6 +372,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 eInfo[eWeaps][2] = strval(inputtext);
                 TextDrawSetString(eInfo[textdraw_15],inputtext);
             }
+            return 1;
         }
         case DIALOG_ANNINFO:
         {
@@ -370,9 +386,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
                 TextDrawSetString(eInfo[textdraw_21], "Yes");
 
             }
+            return 1;
         }
     }
-    return 1;
+    return 0;
 }
 
 //==================Commands===================
@@ -860,6 +877,5 @@ stock CreateTDS()
     TextDrawSetSelectable(eInfo[textdraw_24], 1);
 
 }
-
 
 
